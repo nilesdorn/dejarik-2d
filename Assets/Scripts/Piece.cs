@@ -8,7 +8,7 @@ public class Piece : MonoBehaviour
     public GameObject controller;
     public GameObject movePlate;
     private bool hasMoved = false;
-    AudioSource audioData;
+    //AudioSource audioData;
 
     // Piece Position: These represent the board "coordinates," not the actual Unity coordinates
     private int orbitBoard = -1; // Orbit
@@ -78,8 +78,8 @@ public class Piece : MonoBehaviour
     public void SetCoords() 
     {  
         this.transform.position = controller.GetComponent<Game>().boardTiles.Find(t => t.rNum == orbitBoard && t.aNum == rayBoard).GetTileCenter();
-        audioData = GetComponent<AudioSource>();
-        audioData.Play(0);
+        //audioData = GetComponent<AudioSource>();
+        //audioData.Play(0);
     }
 
     public int GetOrbitBoard()

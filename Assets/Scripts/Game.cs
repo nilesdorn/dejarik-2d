@@ -23,13 +23,25 @@ public class Game : MonoBehaviour
     private string currentPlayer = "blue";
     private bool gameOver = false;
     private bool piecesEnabled = true;
+    public GameObject restartText;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void PlayGame()
+    {
         InitializeBoard();
-        playerBlue = new GameObject[]{ 
+        playerBlue = new GameObject[]{
             Create("blue_brute", 0, 9), Create("blue_guardian", 0, 8),
             Create("blue_predator", 1, 8), Create("blue_scout", 1, 9) };
         playerRed = new GameObject[]{
@@ -44,22 +56,17 @@ public class Game : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameOver && Input.GetMouseButtonDown(0)) 
-        {
-            gameOver = false;
-            SceneManager.LoadScene("Game"); // Reloads the game 
-        }
-    }
-
     public void Winner(string playerWinner)
     {
         gameOver = true;
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().enabled = true;
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<Text>().text = playerWinner + " is the winner";
-        GameObject.FindGameObjectWithTag("RestartText").GetComponent<Text>().enabled = true;
+        restartText.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Game");
     }
 
     // Creates boardTile objects for each tile on the board and adds them to the list boardTiles
